@@ -4216,7 +4216,7 @@ set_one_cmd_context(
 	case CMD_imenu:	    case CMD_inoremenu:	    case CMD_iunmenu:
 	case CMD_cmenu:	    case CMD_cnoremenu:	    case CMD_cunmenu:
 	case CMD_tmenu:				    case CMD_tunmenu:
-	case CMD_popup:	    case CMD_tearoff:	    case CMD_emenu:
+	case CMD_popup:				    case CMD_emenu:
 #ifdef FEAT_GUI_MACVIM
         case CMD_macmenu:
 #endif
@@ -8282,6 +8282,7 @@ ex_splitview(exarg_T *eap)
     int		browse_flag = cmdmod.browse;
 #endif
     int		use_tab = eap->cmdidx == CMD_tabedit
+		       || eap->cmdidx == CMD_tabedit2
 		       || eap->cmdidx == CMD_tabfind
 		       || eap->cmdidx == CMD_tabnew;
 
@@ -8717,6 +8718,7 @@ do_exedit(
     if ((eap->cmdidx == CMD_new
 		|| eap->cmdidx == CMD_tabnew
 		|| eap->cmdidx == CMD_tabedit
+		|| eap->cmdidx == CMD_tabedit2
 		|| eap->cmdidx == CMD_vnew) && *eap->arg == NUL)
     {
 	/* ":new" or ":tabnew" without argument: edit an new empty buffer */
