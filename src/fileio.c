@@ -3522,14 +3522,6 @@ buf_write(
 	msg_scroll = FALSE;	    /* overwrite previous file message */
     else
 	msg_scroll = TRUE;	    /* don't overwrite previous file message */
-    if (!filtering)
-	filemess(buf,
-#ifndef UNIX
-		sfname,
-#else
-		fname,
-#endif
-		    (char_u *)"", 0);	/* show that we are busy */
     msg_scroll = FALSE;		    /* always overwrite the file message now */
 
     buffer = alloc(BUFSIZE);
@@ -5010,6 +5002,7 @@ restore_backup:
 		STRCAT(IObuff, shortmess(SHM_WRI) ? _(" [w]") : _(" written"));
 	}
 
+	IObuff[0] = '\0';
 	set_keep_msg(msg_trunc_attr(IObuff, FALSE, 0), 0);
     }
 
